@@ -3,7 +3,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';  // Assuming you're using Bootstrap
 
-export default function ButtonGr() {
+export default function ButtonGr({ myArray }) {
   const handlePush = () => {
     
   };
@@ -15,22 +15,22 @@ export default function ButtonGr() {
 
   const handleDelete = () => {
     // Your logic for the Delete button
-    console.log('Delete button clicked');
+    console.log({ myArray });
   };
 
   return (
-    <div className='d-flex flex-column align-items-start'>
-      <div className='buttonGr'>
+    <div className='d-flex  align-items-start' style={{ marginTop: '80px' }}>
+      <div>
         <Button variant='success' onClick={handlePush}>
           Push
         </Button>
       </div>
-      <div>
+      <div style={{ marginLeft: '8px' }}>
         <Button variant='warning' onClick={handleRefresh}>
           Refresh
         </Button>
       </div>
-      <div>
+      <div style={{ marginLeft: '8px' }}>
         <Button variant='danger' onClick={handleDelete}>
           DELETE
         </Button>

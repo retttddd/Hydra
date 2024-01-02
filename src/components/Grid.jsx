@@ -2,10 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
 import { useState, useEffect } from "react";
-import Collapse from '@mui/material/Collapse';
-import Alert from '@mui/material/Alert';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
+import CollapsibleAlert from './reusableAlert';
 
 
 const emptyArray = [];
@@ -36,6 +33,7 @@ const handleRowSelectionModelChange = (rowSelection) =>{
 export default function DataGridDemo() {
   const [tableData, setTableData] = useState([])
   const [alertState, setAlertState] = React.useState([false,'']);
+ 
 
   useEffect(() => {
     fetch("http://localhost:8080/time")
@@ -45,32 +43,17 @@ export default function DataGridDemo() {
 
   }, [])
 
-  const showErrorAlert=(error)=>{
-    setAlertState([true,error])
-   
-  }
+  const showErrorAlert = (error) => {
+    setAlertState({ isOpen: true, message: error });
+  };
+
+  const closeErrorAlert = () => {
+    setAlertState({ isOpen: false, message: '' });
+  };
 
   return (
     <Box sx={{ height: 400, width: "100%" }}>
-       <Collapse in={alertState[0]}>
-        <Alert severity="error"
-          action={
-            <IconButton
-              aria-label="close"
-              color="inherit"
-              size="big"
-              onClick={() => {
-                setAlertState([false,""])
-              }}
-            >
-              <CloseIcon fontSize="inherit" />
-            </IconButton>
-          }
-          sx={{ mb: 2 }}
-        >
-          Error occured:{alertState[1]}
-        </Alert>
-      </Collapse>
+      <CollapsibleAlert isOpen={alertState.isOpen} message={alertState.message} onClose={closeErrorAlert} />
       <DataGrid
         rows={tableData}
         columns={columns}
@@ -96,6 +79,7 @@ export default function DataGridDemo() {
         disableRowSelectionOnClick
         onRowSelectionModelChange={handleRowSelectionModelChange}
       />
+      
     </Box>
   );
 }
