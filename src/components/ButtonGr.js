@@ -25,12 +25,12 @@ export default function ButtonGr({ myArray }) {
           Push
         </Button>
       </div>
-      <div style={{ marginLeft: '8px' }}>
+      <div style={{ marginLeft: '10px' }}>
         <Button variant='warning' onClick={handleRefresh}>
           Refresh
         </Button>
       </div>
-      <div style={{ marginLeft: '8px' }}>
+      <div style={{ marginLeft: '10px' }}>
         <Button variant='danger' onClick={handleDelete}>
           DELETE
         </Button>
