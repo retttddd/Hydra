@@ -3,9 +3,10 @@ import Box from "@mui/material/Box";
 import { DataGrid } from "@mui/x-data-grid";
 import { useState, useEffect } from "react";
 import CollapsibleAlert from './reusableAlert';
+import ButtonGr from './ButtonGr';
 
 
-const emptyArray = [];
+
 
 const columns = [
   { field: "id", headerName: "ID", width: 90 },
@@ -23,25 +24,28 @@ const columns = [
 
 
 
-const handleRowSelectionModelChange = (rowSelection) =>{
-  emptyArray.length =[];
-  emptyArray.push(rowSelection)
-  console.log(emptyArray)
-  
-}
+
 
 export default function DataGridDemo() {
   const [tableData, setTableData] = useState([])
   const [alertState, setAlertState] = React.useState([false,'']);
- 
+  const [emptyArray, setEmptyArray] = useState([]);
+  
 
   useEffect(() => {
-    fetch("http://localhost:8080/time")
+    fetch("http://localhost:8080/get1")
       .then((data) => data.json())
       .then((data) => setTableData(data))
       .catch(error => showErrorAlert(error.message)) //str 88 +-
 
   }, [])
+
+  const handleRowSelectionModelChange = (rowSelection) =>{
+  
+    setEmptyArray([...rowSelection])
+    
+    
+  }
 
   const showErrorAlert = (error) => {
     setAlertState({ isOpen: true, message: error });
@@ -79,7 +83,7 @@ export default function DataGridDemo() {
         disableRowSelectionOnClick
         onRowSelectionModelChange={handleRowSelectionModelChange}
       />
-      
+      <ButtonGr myArray={emptyArray} />
     </Box>
   );
 }
