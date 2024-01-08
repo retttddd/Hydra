@@ -20,12 +20,6 @@ const columns = [
 ];
 
 
-  
-
-
-
-
-
 export default function DataGridDemo() {
   const [tableData, setTableData] = useState([])
   const [alertState, setAlertState] = React.useState([false,'']);
@@ -33,18 +27,16 @@ export default function DataGridDemo() {
   
 
   useEffect(() => {
-    fetch("http://localhost:8080/get1")
+    fetch("http://localhost:8080/get")
       .then((data) => data.json())
       .then((data) => setTableData(data))
-      .catch(error => showErrorAlert(error.message)) //str 88 +-
+      .catch(error => showErrorAlert(error.message)) 
 
-  }, [])
+  }, [])      
 
   const handleRowSelectionModelChange = (rowSelection) =>{
   
     setEmptyArray([...rowSelection])
-    
-    
   }
 
   const showErrorAlert = (error) => {
@@ -64,14 +56,14 @@ export default function DataGridDemo() {
         initialState={{
           pagination: {
             paginationModel: {
-              pageSize: 5,
+              pageSize: 6,
             },
           },
         }}
         sx={{
-          boxShadow: 6,
-          border: 3,
-          borderRadius: 2,
+          boxShadow: 3,
+          border: 0,
+          borderRadius: 5,
           borderColor: "black",
           "& .MuiDataGrid-cell:hover": {
             color: "primary.main",

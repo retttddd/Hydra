@@ -1,7 +1,5 @@
-
-
 import React from 'react';
-import { Button } from 'react-bootstrap';  // Assuming you're using Bootstrap
+import { Button } from 'react-bootstrap';  
 
 export default function ButtonGr({ myArray }) {
   const updateEndpoint = 'http://localhost:8080/update'
@@ -9,6 +7,7 @@ export default function ButtonGr({ myArray }) {
   const updateSender = () => {
     fetch(updateEndpoint, {
       method: 'POST',
+      mode: 'no-cors',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -38,7 +37,7 @@ export default function ButtonGr({ myArray }) {
   } else{
     console.log('refreshing ' + myArray + ' pool')
   }
-
+  updateSender();
   };
   
 
@@ -50,23 +49,24 @@ export default function ButtonGr({ myArray }) {
  
 
   return (
-    <div className='d-flex  align-items-start' style={{ marginRight: '10px' }}>
-      <div style={{ marginRight: '10px' }}>
-        <Button variant='success' onClick={handlePush}>
+    <div className='d-flex align-items-start' style={{ marginRight: '10px', marginTop: '25px' }}>
+      <div style={{ marginRight: '20px' }}>
+        <Button style={{ backgroundColor: '#57A889', borderRadius: '10px', border: 'none', height: '45px', width: '90px' }} onClick={handlePush}>
           Push
         </Button>
       </div>
-      <div style={{ marginRight: '10px' }}>
-        <Button variant='warning' onClick={handleRefresh}>
+      <div style={{ marginRight: '20px' }}>
+        <Button style={{ backgroundColor: '#57A889', borderRadius: '10px', border: 'none', height: '45px', width: '90px' }} onClick={handleRefresh}>
           Refresh
         </Button>
       </div>
-      <div style={{ marginRight: '10px' }}>
-        <Button variant='danger' onClick={handleDelete}>
-          DELETE
+      <div style={{ marginRight: '20px' }}>
+        <Button style={{ backgroundColor: '#57A889', borderRadius: '10px', border: 'none', height: '45px', width: '90px' }} onClick={handleDelete}>
+          Delete
         </Button>
       </div>
     </div>
   );
+  
 }
 
