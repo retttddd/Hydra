@@ -27,7 +27,7 @@ export default function DataGridDemo() {
   
 
   useEffect(() => {
-    fetch("http://localhost:8080/get")
+    fetch("/api/get")
       .then((data) => data.json())
       .then((data) => setTableData(data))
       .catch(error => showErrorAlert(error.message)) 
@@ -57,6 +57,7 @@ export default function DataGridDemo() {
           pagination: {
             paginationModel: {
               pageSize: 6,
+              pageSizeOptions : 6,
             },
           },
         }}
@@ -65,9 +66,7 @@ export default function DataGridDemo() {
           border: 0,
           borderRadius: 5,
           borderColor: "black",
-          "& .MuiDataGrid-cell:hover": {
-            color: "primary.main",
-          },
+          
           backgroundColor: "white",
         }}
         pageSizeOptions={[5]}

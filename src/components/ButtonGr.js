@@ -1,8 +1,10 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';  
 
+
+
 export default function ButtonGr({ myArray }) {
-  const updateEndpoint = 'http://localhost:8080/update'
+  const updateEndpoint = '/api/update'
 
   const updateSender = () => {
     fetch(updateEndpoint, {
@@ -32,12 +34,9 @@ export default function ButtonGr({ myArray }) {
   };
 
   const handleRefresh = () => {
-  if (myArray.length === 0){
-   console.log('nothing to refresh')
-  } else{
-    console.log('refreshing ' + myArray + ' pool')
-  }
+  
   updateSender();
+
   };
   
 
@@ -49,22 +48,23 @@ export default function ButtonGr({ myArray }) {
  
 
   return (
-    <div className='d-flex align-items-start' style={{ marginRight: '10px', marginTop: '25px' }}>
+    <div className='d-flex align-items-start' style={{ marginRight: '10px', marginTop: '25px'}}>
       <div style={{ marginRight: '20px' }}>
-        <Button style={{ backgroundColor: '#57A889', borderRadius: '10px', border: 'none', height: '45px', width: '90px' }} onClick={handlePush}>
+        <Button style={{ backgroundColor: '#57A889', borderRadius: '10px', border: 'none', height: '45px', width: '90px', boxShadow: '0 0 12px rgba(0.5, 0, 0, 0.4)'  }} onClick={handlePush}>
           Push
         </Button>
       </div>
       <div style={{ marginRight: '20px' }}>
-        <Button style={{ backgroundColor: '#57A889', borderRadius: '10px', border: 'none', height: '45px', width: '90px' }} onClick={handleRefresh}>
+        <Button style={{ backgroundColor: '#57A889', borderRadius: '10px', border: 'none', height: '45px', width: '90px', boxShadow: '0 0 12px rgba(0.5, 0, 0, 0.4)' }} onClick={handleRefresh}>
           Refresh
         </Button>
       </div>
       <div style={{ marginRight: '20px' }}>
-        <Button style={{ backgroundColor: '#57A889', borderRadius: '10px', border: 'none', height: '45px', width: '90px' }} onClick={handleDelete}>
+        <Button style={{ backgroundColor: '#57A889', borderRadius: '10px', border: 'none', height: '45px', width: '90px', boxShadow: '0 0 12px rgba(0.5, 0, 0, 0.4)' }} onClick={handleDelete}>
           Delete
         </Button>
       </div>
+      
     </div>
   );
   
