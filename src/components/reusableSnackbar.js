@@ -1,31 +1,17 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import Snackbar from '@mui/material/Snackbar';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
+import * as React from "react";
 
-export default function SimpleSnackbar(numbersArray) {
-  const [open, setOpen] = React.useState(false);
-  const resultString = "action done to pools: " + numbersArray.join(", ");
-  const handleClick = () => {
-    setOpen(true);
-  };
+import Snackbar from "@mui/material/Snackbar";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
-  };
-
+export default function SimpleSnackbar(props) {
   const action = (
     <React.Fragment>
       <IconButton
         size="small"
         aria-label="close"
         color="inherit"
-        onClick={handleClose}
+        onClick={props.handleClose}
       >
         <CloseIcon fontSize="small" />
       </IconButton>
@@ -34,12 +20,11 @@ export default function SimpleSnackbar(numbersArray) {
 
   return (
     <div>
-      <Button onClick={handleClick}>Open simple snackbar</Button>
       <Snackbar
-        open={open}
+        open={props.isOpen}
         autoHideDuration={6000}
-        onClose={handleClose}
-        message={resultString}
+        onClose={props.handleClose}
+        message="Action Done!!!"
         action={action}
       />
     </div>
