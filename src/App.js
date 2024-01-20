@@ -26,11 +26,11 @@ function App() {
     handleSnackeOpen();
     fetch(updateEndpoint, {
       method: "POST",
-      mode: "no-cors",
+      mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ data: emptyArray }),
+      body: JSON.stringify(emptyArray),
     })
       .then((response) => {
         if (!response.ok) {
