@@ -8,7 +8,7 @@ import ButtonGr from "./components/ButtonGr";
 import SimpleSnackbar from "./components/reusableSnackbar";
 
 function App() {
-  const updateEndpoint = "/api/update";
+  const updateEndpoint = "/api/data";
 
   const [tableDatax, setTableDatax] = useState([]);
   const [alertState, setAlertState] = React.useState([false, ""]);
@@ -16,7 +16,7 @@ function App() {
   const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
-    fetch("/api/get")
+    fetch("/api/data")
       .then((data) => data.json())
       .then((data) => setTableDatax(data))
       .catch((error) => showErrorAlert(error.message));
