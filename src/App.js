@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import CollapsibleAlert from "./components/reusableAlert";
 import ButtonGr from "./components/ButtonGr";
 import SimpleSnackbar from "./components/reusableSnackbar";
+import NewPoolDialog from "./components/NewPoolDialog";
 
 function App() {
   const updateEndpoint = "/api/data";
@@ -14,6 +15,14 @@ function App() {
   const [alertState, setAlertState] = React.useState([false, ""]);
   const [emptyArray, setEmptyArray] = useState([]);
   const [open, setOpen] = React.useState(false);
+  const [newPoolDialogOpen, setNewPoolDialogOpen] = React.useState(false);
+
+  const handleDialogOpen = () => {
+    setNewPoolDialogOpen(true);
+  };
+  const handleDialogClose = () => {
+    setNewPoolDialogOpen(false);
+  };
 
   useEffect(() => {
     fetch("/api/data")
@@ -57,6 +66,9 @@ function App() {
   const handleRowSelectionModelChange = (rowSelection) => {
     setEmptyArray([...rowSelection]);
   };
+  const onSaveNewPoolItem = (value) => {
+    console.log(value);
+  };
 
   const showErrorAlert = (error) => {
     setAlertState({ isOpen: true, message: error });
@@ -77,8 +89,13 @@ function App() {
           tableData={tableDatax}
           onChange={handleRowSelectionModelChange}
         />
-        <ButtonGr onRefresh={updateSender} />
+        <ButtonGr onRefresh={updateSender} onNew={handleDialogOpen} />
         <SimpleSnackbar isOpen={open} handleClose={handleSnackeClose} />
+        <NewPoolDialog
+          isOpen={newPoolDialogOpen}
+          onClose={handleDialogClose}
+          onSave={onSaveNewPoolItem}
+        />
       </header>
     </div>
   );

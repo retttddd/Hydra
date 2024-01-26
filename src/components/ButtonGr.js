@@ -7,6 +7,9 @@ export default function ButtonGr(props) {
   const handleRefresh = () => {
     props.onRefresh();
   };
+  const handleOpen = () => {
+    props.onNew();
+  };
 
   const handleDelete = () => {};
 
@@ -58,6 +61,21 @@ export default function ButtonGr(props) {
           onClick={handleDelete}
         >
           Delete
+        </Button>
+      </div>
+      <div style={{ marginRight: "20px" }}>
+        <Button
+          style={{
+            backgroundColor: "#57A889",
+            borderRadius: "10px",
+            border: "none",
+            height: "45px",
+            width: "90px",
+            boxShadow: "0 0 12px rgba(0.5, 0, 0, 0.4)",
+          }}
+          onClick={handleOpen}
+        >
+          Open
         </Button>
       </div>
     </div>
