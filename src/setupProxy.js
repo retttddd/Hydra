@@ -8,15 +8,15 @@ module.exports = function (app) {
     "/api",
     createProxyMiddleware({
       onProxyReq: fixRequestBody,
-      target: "http://localhost:8000",
+      target: process.env.REACT_APP_SERVER_KEY,
       pathFilter: "/api",
       changeOrigin: true,
       secure: false,
       logLevel: "debug",
       logger: console,
-      // headers: {
-      //   Connection: "Keep-Alive",
-      // },
+      headers: {
+        Connection: "Keep-Alive",
+      },
     })
   );
 };
